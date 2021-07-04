@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_test" model="ir.actions.act_window">
+    <field name="name">Test</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">test_one.test_one</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Test ok!
+      </p>
+
+    </field>
+  </record>
+
+
+  <menuitem id="test_root"
+            name="test"
+            sequence="20"/>
+
+  <menuitem id="test_second_root"
+            name="Second"
+            parent="test_root"
+            action="action_test"
+            sequence="20"/>
+
+  <data>
+
+    <record model="ir.ui.view" id="test_one.list">
+      <field name="name">test_one list</field>
+      <field name="model">test_one.test_one</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="duration"/>
+          <field name="tester"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="test_one.form">
+      <field name="name">test_one form</field>
+      <field name="model">test_one.test_one</field>
+      <field name="arch" type="xml">
+        <form string="Test form">
+          <group colspan="6">
+            <group colspan="5" col="5">
+              <separator string="test_sep" colspan="5"/>
+              <field name="name"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+              <field name="duration"/>
+              <field name="tester"/>
+            </group>
+          </group>
+        </form>
+      </field>
+    </record>
+
+  </data>
+</odoo>

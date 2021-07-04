@@ -1,0 +1,21 @@
+{
+    "name": "Test_one",
+    "version": "0.1",
+    "category": "Sales",
+    "summary":"test_modul",
+    "sequence": "10",
+    "author":"Pasha",
+    "license":"AGPL-3",
+    "maintainer": "test",
+    "website": "mysite.com",
+    "depends": ['base'],
+    "demo": [],
+    "data": [
+        'views/views.xml',
+        'views/templates.xml',
+        'security/ir.model.access.csv',
+    ],
+    "installable": True,
+    "application": True,
+    "auto_install": False,
+}

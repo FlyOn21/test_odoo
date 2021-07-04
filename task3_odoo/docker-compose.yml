@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+  odoo:
+    image: odoo:14.0
+    container_name: odoo
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - odoo_network
+    ports:
+      - 8069:8069
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+
+  db:
+    image: postgres:latest
+    container_name: postgres
+    env_file:
+      - .env
+    restart: always
+    hostname: db
+    networks:
+      - odoo_network
+    ports:
+      - 9300:5432
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pg4_l
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - 5500:80
+    depends_on:
+      - db
+    networks:
+      - odoo_network
+
+
+networks:
+  odoo_network:
+volumes:
+  odoo-web-data:
+  odoo-db-data:
